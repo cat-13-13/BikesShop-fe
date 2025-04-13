@@ -37,6 +37,10 @@ const PurchasePage = () => {
         setbuyerData({ ...buyerData, [name]: value })
     }
 
+    const isFormValid = () => {
+        return buyerData.fullName && buyerData.email && buyerData.address && cardNumber && expirationMonth && expirationYear && cvv;
+    };
+
     const handleSubmit = event => {
         event.preventDefault();
 
@@ -54,6 +58,7 @@ const PurchasePage = () => {
                 }, 3000);
             })
             .catch(err => {
+                console.log(err)
                 setErrors(err.response.data.errorMessages);
             });
     }
@@ -145,12 +150,12 @@ const PurchasePage = () => {
                             <Form.Control type="text" onChange={handleInputChange} name="address" />
                         </Form.Group>
 
-                        {errors.length > 0 && <FormError>{errors.map(elm => <p>{elm}</p>)}</FormError>}
+                        {errors.length > 0 && <FormError>{errors.map((elm, idx) => <p key={idx}>{elm}</p>)}</FormError>}
 
                         {isLoading && <Loader />}
 
                         <div className="d-grid">
-                            <Button variant="dark" type="submit">BUY</Button>
+                            <Button variant="dark" type="submit" disabled={!isFormValid()}>BUY</Button>
                         </div>
                     </Form>
 

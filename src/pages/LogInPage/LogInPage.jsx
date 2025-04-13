@@ -1,15 +1,17 @@
 import { Container, Row, Col, Form, Button } from 'react-bootstrap'
-
 import { useContext, useState } from "react"
 import authService from './../../services/auth.service'
 import { useNavigate } from 'react-router-dom'
 import { AuthContext } from "./../../contexts/auth.context"
+import FormError from './../../components/FormError/FormError'
 
 const LoginPage = () => {
     const [loginData, setLoginData] = useState({
         email: '',
         password: ''
     })
+
+    const [errorMessage, setErrorMessage] = useState('') 
 
     const navigate = useNavigate()
 
@@ -31,7 +33,10 @@ const LoginPage = () => {
                 authenticateUser()
                 navigate('/')
             })
-            .catch(err => console.log(err))
+            .catch(err => {
+                console.log(err)
+                setErrorMessage(err.response?.data?.message || 'Something went wrong')
+            })
     }
 
 
@@ -47,7 +52,6 @@ const LoginPage = () => {
 
                     <Form onSubmit={handleSubmit}>
 
-
                         <Form.Group className="mb-3" controlId="email">
                             <Form.Label>@EMAIL</Form.Label>
                             <Form.Control type="email" value={email} onChange={handleInputChange} name="email" />
@@ -57,6 +61,8 @@ const LoginPage = () => {
                             <Form.Label>PASSWORD</Form.Label>
                             <Form.Control type="password" value={password} onChange={handleInputChange} name="password" />
                         </Form.Group>
+
+                        {errorMessage && <FormError>{errorMessage}</FormError>}
 
                         <div className="d-grid">
                             <Button variant="dark" type="submit">GO!</Button>

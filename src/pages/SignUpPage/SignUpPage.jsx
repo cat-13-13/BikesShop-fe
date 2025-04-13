@@ -1,9 +1,9 @@
 import { Container, Row, Col, Form, Button } from "react-bootstrap"
-
 import { useState, useContext } from "react"
 import authService from './../../services/auth.service'
 import { useNavigate } from "react-router-dom"
 import { UserContext } from '../../contexts/user.context'
+import FormError from './../../components/FormError/FormError'
 
 const SignupPage = () => {
 
@@ -12,6 +12,8 @@ const SignupPage = () => {
         email: '',
         password: ''
     })
+
+    const [errorMessage, setErrorMessage] = useState('') 
 
     const navigate = useNavigate()
     const { setUser } = useContext(UserContext)
@@ -26,15 +28,24 @@ const SignupPage = () => {
 
         authService
             .signup(signupData)
-            .then(({ data }) => {
-                console.log(data)
-                if (data.authToken) {
-                    localStorage.setItem('authToken', data.authToken)
-                    setUser(data.user)
-                    navigate('/')
-                }
+            .then(() => {
+                return authService.login({ email: signupData.email, password: signupData.password })
             })
-            .catch(err => console.log('Signup error:', err))
+            .then(async ({ data }) => {
+                localStorage.setItem('authToken', data.authToken)
+                await setUser(data.user)
+
+                const redirectToHome = () => navigate('/');
+                const checkUser = setInterval(() => {
+                    if (localStorage.getItem('authToken')) {
+                        clearInterval(checkUser);
+                        redirectToHome();
+                    }
+                }, 100);
+            })
+            .catch(err => {
+                setErrorMessage(err.response?.data?.message || 'Something went wrong') 
+            })
     }
 
     const { username, password, email } = signupData
@@ -63,6 +74,8 @@ const SignupPage = () => {
                             <Form.Label>PASSWORD</Form.Label>
                             <Form.Control type="password" value={password} onChange={handleInputChange} name="password" />
                         </Form.Group>
+
+                        {errorMessage && <FormError>{errorMessage}</FormError>} {/* Display FormError if there's an error */}
 
                         <div className="d-grid">
                             <Button variant="dark" type="submit">REGISTER</Button>
