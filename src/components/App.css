@@ -1,0 +1,121 @@
+:root {
+    /* Colores principales */
+    --color-primary: #1E3A8A;        /* Azul Principal */
+    --color-primary-light: #3B82F6;  /* Azul Claro */
+    --color-primary-dark: #1C3D73;   /* Azul Oscuro */
+    
+    --color-secondary: #84CC16;      /* Verde Secundario */
+    --color-secondary-light: #A7E35C; /* Verde Claro */
+    --color-secondary-dark: #659B12; /* Verde Oscuro */
+    --color-secondary-bg: #a6e35cbe; /* Verde Claro fondo */
+    
+    /* Colores de fondo y texto */
+    --color-background: #F3F4F6;      /* Fondo Claro */
+    --color-text: #1F2937;            /* Texto Principal */
+    --color-text-light: #4B5563;      /* Texto Secundario */
+    
+    /* Colores de acento */
+    --color-accent: #F97316;          /* Naranja Acento */
+    --color-accent-light: #FF9F4A;    /* Naranja Claro */
+    --color-accent-dark: #C85A00;     /* Naranja Oscuro */
+    
+    /* Colores de estados */
+    --color-error: #DC2626;           /* Rojo Error */
+    --color-error-light: #F87171;     /* Rojo Claro */
+    --color-error-dark: #B91C1C;      /* Rojo Oscuro */
+    
+    --color-warning: #F59E0B;         /* Amarillo Advertencia */
+    --color-warning-light: #FBBF24;   /* Amarillo Claro */
+    --color-warning-dark: #B45309;    /* Amarillo Oscuro */
+}
+
+
+.App {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    color: var(--color-text-light);
+}
+
+body {
+    background-color: rgb(239, 235, 235);
+    padding-bottom: 5em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    margin-top: 1em;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    color: var(--color-text);
+}
+
+.bold {
+    font-weight: 700;
+}
+
+.card {
+    height: 100%;
+    border: none;
+}
+
+
+/* BUTTONS */
+.add-category-btn {
+    background-color: var(--color-secondary);
+    border: none;
+    font-weight: 600;
+}
+.add-category-btn:hover {
+    background-color: var(--color-secondary-light);
+}
+
+.delete-category-btn {
+    background-color: var(--color-error);
+    border: none;
+    font-weight: 600;
+}
+.delete-category-btn:hover {
+    background-color: var(--color-error-dark);
+}
+
+.add-option-btn {
+    background-color: var(--color-primary);
+    border: none;
+    font-weight: 600;
+}
+.add-option-btn:hover {
+    background-color: var(--color-primary-light);
+}
+
+.add-price-btn {
+    background-color: transparent;
+    border: 1px solid var(--color-accent);
+    color: var(--color-accent);
+    font-weight: 600;
+}
+.add-price-btn:hover {
+    background-color: var(--color-accent-light);
+    border: 1px solid var(--color-accent-light);
+    color: white;
+}
+
+.save-btn {
+    background-color: var(--color-secondary);
+    border: 1px solid var(--color-secondary);
+    font-weight: 600;
+}
+.save-btn:hover {
+    background-color: var(--color-secondary-light);
+    border: 1px solid var(--color-secondary-light);
+}
+.save-btn:disabled {
+    background-color: white;
+    border: 1px solid var(--color-secondary-dark);
+    color: var(--color-secondary-dark);
+    font-weight: 600;
+    pointer-events: all;
+    cursor: not-allowed !important; 
+}

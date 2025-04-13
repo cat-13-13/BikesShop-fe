@@ -1,0 +1,20 @@
+.brand-name, .logout {
+    color: var(--color-primary-light);
+}
+
+.brand-name:hover, .logout:hover {
+    color: var(--color-primary);
+}
+
+.nav-title {
+    text-decoration: none;
+    color: var(--color-secondary)
+}
+
+.nav-title:hover {
+    color: var(--color-primary);
+}
+
+.pointer {
+    cursor: pointer
+}
