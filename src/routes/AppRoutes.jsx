@@ -28,13 +28,13 @@ const AppRoutes = () => {
     return (
 
         <Routes>
-            <Route path="/" element={<HomePage />} />
             <Route path="/register" element={<SignUpPage />} />
             <Route path="/login" element={<LogInPage />} />
-            <Route path="/products/list" element={<ProductsListPage />} />
 
             <Route element={<PrivateRoutes />}>
+                <Route path="/" element={<HomePage />} />
                 <Route path="/users/:_id" element={<UserDetailPage />} />
+                <Route path="/products/list" element={<ProductsListPage />} />
                 <Route path="/products/:_id" element={<ProductDetailPage />} />
                 <Route path="/products/:product_id/purchase" element={<PurchasePage />} />
                 <Route path="/cart" element={<CartPage />} />

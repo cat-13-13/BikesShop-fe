@@ -34,14 +34,22 @@ function AuthProviderWrapper(props) {
             authService
                 .verify(token)
                 .then(({ data }) => {
-                    console.log(data)
+                    console.log("✅ Usuario autenticado", data)
                     setUser(data)
-                    setIsLoading(false) 
+                    setIsLoading(false)
                 })
                 .catch(err => {
-                    logout() 
+                    console.error("❌ Error verificando token", err)
+
+                    if (err.response?.status === 401 || err.response?.data?.code === 'invalid_token') {
+                        console.log("🔐 Token inválido o expirado, cerrando sesión...")
+                        logout()
+                    } else {
+                        setIsLoading(false)
+                    }
                 })
         } else {
+            console.log("⚠️ No hay token")
             logout()
         }
     }
