@@ -27,20 +27,47 @@ const ProductDetailsPage = () => {
         loadProduct();
     }, []);
 
-    const loadProduct = () => {
+    const loadProduct = async () => {
         productService
             .getOneProduct(_id)
             .then(({ data }) => {
-                setProduct(data)    
+                setProduct(data);
             })
-            .catch(err => console.log(err))
+            .catch(err => console.log(err));
+    };
+
+
+    useEffect(() => {
+        if (product) {
+            handleStartOptions();
+        }
+    }, [product]);
+
+    const handleStartOptions = () => {
+        if(product?.title == "Bicycle"){
+            const initialOptions = {
+                "Frame type": product.customizableParts[0].options.find(option => option.inStock)?.name || "",
+                "Frame finish": product.customizableParts[1].options.find(option => option.inStock)?.name || "",
+                "Wheels": product.customizableParts[2].options.find(option => option.inStock)?.name || "",
+                "Rim color": product.customizableParts[3].options.find(option => option.inStock)?.name || "",
+                "Chain": product.customizableParts[4].options.find(option => option.inStock)?.name || ""
+            };
+            setSelectedOptions(initialOptions);
+        } 
+        else if(product?.title == "Skis") return
+        else if(product?.title == "Surf Board"){
+            const initialOptions = {
+                "Color": product.customizableParts[0].options[0].name
+            };
+            setSelectedOptions(initialOptions);
+        }
     }
 
 
     const handleDelete = () => {
         productService
             .deleteProduct(_id)
-            .then(() => navigate('/products/list'))
+            .then(() => navigate('/'))
             .catch(err => console.log(err))
     }
 
@@ -101,17 +128,25 @@ const ProductDetailsPage = () => {
 
 
     const getImageUrl = () => {
-        if (product?.title !== "Bicycle") return null;
+        if (product?.title == "Bicycle") {
 
-        const formatOption = (option) => option.toLowerCase().replace(/\s+/g, '-');
-
-        const frameType = formatOption(selectedOptions["Frame type"] || "full-suspension");
-        const frameFinish = formatOption(selectedOptions["Frame finish"] || "matte");
-        const wheels = formatOption(selectedOptions["Wheels"] || "road-wheels");
-        const rimColor = formatOption(selectedOptions["Rim color"] || "black");
-        const chain = formatOption(selectedOptions["Chain"] || "single-speed");
-
-        return `/${frameType}/${frameFinish}_${wheels}_${rimColor}_${chain}.svg`;
+            const formatOption = (option) => option.toLowerCase().replace(/\s+/g, '-');
+            
+            const frameType = formatOption(selectedOptions["Frame type"] || "full-suspension");
+            const frameFinish = formatOption(selectedOptions["Frame finish"] || "matte");
+            const wheels = formatOption(selectedOptions["Wheels"] || "road-wheels");
+            const rimColor = formatOption(selectedOptions["Rim color"] || "black");
+            const chain = formatOption(selectedOptions["Chain"] || "single-speed");
+            
+            return `/${frameType}/${frameFinish}_${wheels}_${rimColor}_${chain}.svg`;
+        }
+        else if (product?.title == "Skis") {
+            return "/skis/skis.svg";
+        }
+        else if (product?.title == "Surf Board") {
+            const color = (selectedOptions["Color"] || "default").toLowerCase().replace(/\s+/g, '-');
+            return `/surf-boards/surfboard-${color}.svg`;
+        }
     };
 
     const isAddToCartDisabled = product?.isCustomizable && product.customizableParts.some(part => !selectedOptions[part.part]);
@@ -137,11 +172,12 @@ const ProductDetailsPage = () => {
 
                         <Row>
                             <Col md={{ span: 4 }} >
-                                <Row>
+                                <Row className="align-items-center justify-content-center mb-3">
                                     {getImageUrl() ? (
                                         <img 
                                             src={getImageUrl()} 
                                             alt="Custom Bike" 
+                                            className="product-image"
                                         />
                                     ) : (
                                         <p>Image not available for this product.</p>

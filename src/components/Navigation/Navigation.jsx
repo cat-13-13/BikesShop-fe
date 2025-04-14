@@ -29,7 +29,7 @@ const Navigation = () => {
                             <>
                                 <Nav className="me-auto">
                                     <Nav.Link as="span">
-                                        <Link to="/products/list" className='nav-title'>Shop</Link>
+                                        <Link to="/" className='nav-title'>Shop</Link>
                                     </Nav.Link>
                                     {user?.role === 'ADMIN' && (
                                         <Nav.Link as="span">

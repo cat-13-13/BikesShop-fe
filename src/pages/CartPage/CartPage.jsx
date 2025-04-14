@@ -46,16 +46,23 @@ const CartPage = () => {
         }
     };
 
-    const getImageUrl = (options) => {
+    const getImageUrl = (product, options) => {
         const formatOption = (option) => option.toLowerCase().replace(/\s+/g, '-');
 
-        const frameType = formatOption(options["Frame type"] || "full-suspension");
-        const frameFinish = formatOption(options["Frame finish"] || "matte");
-        const wheels = formatOption(options["Wheels"] || "road-wheels");
-        const rimColor = formatOption(options["Rim color"] || "black");
-        const chain = formatOption(options["Chain"] || "single-speed");
+        if (product.title === "Bicycle") {
+            const frameType = formatOption(options["Frame type"] || "full-suspension");
+            const frameFinish = formatOption(options["Frame finish"] || "matte");
+            const wheels = formatOption(options["Wheels"] || "road-wheels");
+            const rimColor = formatOption(options["Rim color"] || "black");
+            const chain = formatOption(options["Chain"] || "single-speed");
 
-        return `/${frameType}/${frameFinish}_${wheels}_${rimColor}_${chain}.svg`;
+            return `/${frameType}/${frameFinish}_${wheels}_${rimColor}_${chain}.svg`;
+        } else if (product.title === "Skis") {
+            return "/skis/skis.svg";
+        } else if (product.title === "Surf Board") {
+            const color = formatOption(options["Color"] || "default");
+            return `/surf-boards/surfboard-${color}.svg`;
+        }
     };
 
     const calculateTotalPrice = () => {
@@ -71,16 +78,16 @@ const CartPage = () => {
             <hr />
             
             <Row>
-                <Col md={8}>
+                <Col md={8} >
                     {cart.map((item, index) => (
                         <div key={index} className="cart-item d-flex align-items-center mb-3">
                             <img 
-                                src={getImageUrl(item.options)} 
+                                src={getImageUrl(item.product, item.options)} 
                                 alt="Product Image" 
                                 className="cart-image"
                             />
 
-                            <div>
+                            <div className="cart-item-details">
                                 <div className="d-flex justify-content-between align-items-center mb-2">
                                     <h4 className="m-0"> {item.product.title.toUpperCase()}</h4>
                                     <h6 className="m-0">Price: <span className="bold m-0">{item.price} €</span></h6>
@@ -94,7 +101,7 @@ const CartPage = () => {
                                     ))}
                                 </ul>
 
-                                <h6 className="m-0">Total: <span className="bold m-0">{item.price * item.quantity} €</span></h6>
+                                <h6 className="mb-2">Total: <span className="bold">{item.price * item.quantity} €</span></h6>
 
                                 {
                                     <Form.Control

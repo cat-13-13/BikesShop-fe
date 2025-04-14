@@ -2,6 +2,7 @@
     /* Colores principales */
     --color-primary: #1E3A8A;        /* Azul Principal */
     --color-primary-light: #3B82F6;  /* Azul Claro */
+    --color-primary-light-shadow: rgba(59, 130, 246, 0.5); /* Sombra Azul Claro */
     --color-primary-dark: #1C3D73;   /* Azul Oscuro */
     
     --color-secondary: #84CC16;      /* Verde Secundario */

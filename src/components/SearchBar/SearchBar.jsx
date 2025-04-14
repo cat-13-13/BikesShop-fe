@@ -17,7 +17,6 @@ function SearchBar({ setShowFilteredProduct }) {
             <FloatingLabel
                 controlId="floatingInput"
                 label="Search by Product Name..."
-                className="mb-3 searchBar"
             >
                 <Form.Control type="text" placeholder="Product" value={query} onChange={handleQueryChange} />
             </FloatingLabel>

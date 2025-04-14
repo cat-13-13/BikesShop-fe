@@ -3,7 +3,6 @@ import { AuthContext } from '../contexts/auth.context'
 import { Routes, Route } from 'react-router-dom'
 
 import Loader from '../components/Loader/Loader' 
-import HomePage from "./../pages/HomePage/HomePage"
 import SignUpPage from "./../pages/SignUpPage/SignUpPage"
 import LogInPage from "../pages/LogInPage/LogInPage"
 import ProductsListPage from "../pages/ProductsListPage/ProductsListPage"
@@ -28,13 +27,12 @@ const AppRoutes = () => {
     return (
 
         <Routes>
-            <Route path="/" element={<HomePage />} />
+            <Route path="/" element={<ProductsListPage />} />
             <Route path="/register" element={<SignUpPage />} />
             <Route path="/login" element={<LogInPage />} />
 
             <Route element={<PrivateRoutes />}>
                 <Route path="/users/:_id" element={<UserDetailPage />} />
-                <Route path="/products/list" element={<ProductsListPage />} />
                 <Route path="/products/:_id" element={<ProductDetailPage />} />
                 <Route path="/products/:product_id/purchase" element={<PurchasePage />} />
                 <Route path="/cart" element={<CartPage />} />

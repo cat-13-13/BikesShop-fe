@@ -9,6 +9,14 @@
     padding-top: 3% !important;
 }
 
+            
+.product-image {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    object-fit: cover;
+}
+
 .option-btn {
     background-color: transparent;
     border: 1px solid var(--color-primary-light);

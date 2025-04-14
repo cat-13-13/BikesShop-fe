@@ -56,19 +56,19 @@ const ProductsListPage = () => {
 
     return (
         <Container>
-            <Row>
+            <Row className="align-items-center mt-5">
                 <Col>
-                    <h1>PRODUCTS LIST</h1>
+                    <h1 className="m-0">OUR PRODUCTS</h1>
                     {
                         user?.role === 'ADMIN' && <Button variant="dark" size="sm" onClick={() => setShowModal(true)}>Sell New Product</Button>
                     }
                 </Col>
-                <Col className="mt-5">
+                <Col>
                     <SearchBar setShowFilteredProduct={setShowFilteredProduct} />
                 </Col>
             </Row>
 
-            <hr />
+            <hr className="mb-4"/>
             <Row>
                 {
                     !products
