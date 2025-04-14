@@ -32,7 +32,7 @@ const LoginPage = () => {
                 console.log('Login successful', data)
                 storeToken(data.authToken)
                 authenticateUser()
-                navigate('/products/list')
+                navigate('/')
             })
             .catch(err => {
                 console.log(err)
