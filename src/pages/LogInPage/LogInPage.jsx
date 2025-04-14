@@ -29,6 +29,7 @@ const LoginPage = () => {
         authService
             .login(loginData)
             .then(({ data }) => {
+                console.log('Login successful', data)
                 storeToken(data.authToken)
                 authenticateUser()
                 navigate('/products/list')
