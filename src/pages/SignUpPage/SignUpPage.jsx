@@ -47,7 +47,7 @@ const SignupPage = () => {
             })
     }
 
-    const redirectToHome = () => navigate('/');
+    const redirectToHome = () => navigate('/products/list');
 
 
     const { username, password, email } = signupData

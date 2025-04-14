@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from "react"
 import authService from "./../services/auth.service"
 import Loader from "../components/Loader/Loader"
+import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext()
 
@@ -37,7 +38,8 @@ function AuthProviderWrapper(props) {
                     console.log("✅ Usuario autenticado", data)
                     setUser(data)
                     setIsLoading(false)
-                    window.location.href = "/products/list"
+                    const navigate = useNavigate();
+                    navigate('/products/list');
                 })
                 .catch(err => {
                     console.error("❌ Error verificando token", err)
