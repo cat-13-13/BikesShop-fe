@@ -16,7 +16,7 @@ const ProductsList = ({ productsList }) => {
 
     const getImageUrl = (product) => {
         if (product.title === "Bicycle") {
-            return "/full-suspension/matte_road-wheels_black_8-speed.svg";
+            return "/full-suspension/matte_road-wheels_blue_8-speed.svg";
         } else if (product.title === "Skis") {
             return "/skis/skis.svg";
         } else if (product.title === "Surf Board") {
