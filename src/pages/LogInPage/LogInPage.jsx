@@ -31,7 +31,6 @@ const LoginPage = () => {
             .then(({ data }) => {
                 storeToken(data.authToken)
                 authenticateUser()
-                navigate('/')
             })
             .catch(err => {
                 console.log(err)

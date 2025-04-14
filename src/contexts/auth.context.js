@@ -11,7 +11,8 @@ function AuthProviderWrapper(props) {
     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
-        authenticateUser()
+        const navigate = useNavigate();
+        authenticateUser(navigate)
     }, [])
 
     const storeToken = token => {
@@ -28,7 +29,7 @@ function AuthProviderWrapper(props) {
         removeToken()
     }
 
-    const authenticateUser = () => {
+    const authenticateUser = (navigate) => {
         const token = localStorage.getItem("authToken")
 
         if (token) {
@@ -38,8 +39,7 @@ function AuthProviderWrapper(props) {
                     console.log("✅ Usuario autenticado", data)
                     setUser(data)
                     setIsLoading(false)
-                    const navigate = useNavigate();
-                    navigate('/products/list');
+                    navigate('/products/list') 
                 })
                 .catch(err => {
                     console.error("❌ Error verificando token", err)
