@@ -1,7 +1,6 @@
 import { createContext, useEffect, useState } from "react"
 import authService from "./../services/auth.service"
 import Loader from "../components/Loader/Loader"
-import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext()
 
@@ -11,8 +10,7 @@ function AuthProviderWrapper(props) {
     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
-        const navigate = useNavigate();
-        authenticateUser(navigate)
+        authenticateUser()
     }, [])
 
     const storeToken = token => {
@@ -29,7 +27,7 @@ function AuthProviderWrapper(props) {
         removeToken()
     }
 
-    const authenticateUser = (navigate) => {
+    const authenticateUser = () => {
         const token = localStorage.getItem("authToken")
 
         if (token) {
