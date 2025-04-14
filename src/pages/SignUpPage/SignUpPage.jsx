@@ -35,7 +35,6 @@ const SignupPage = () => {
                 localStorage.setItem('authToken', data.authToken)
                 await setUser(data.user)
 
-                const redirectToHome = () => navigate('/');
                 const checkUser = setInterval(() => {
                     if (localStorage.getItem('authToken')) {
                         clearInterval(checkUser);
@@ -47,6 +46,9 @@ const SignupPage = () => {
                 setErrorMessage(err.response?.data?.message || 'Something went wrong') 
             })
     }
+
+    const redirectToHome = () => navigate('/');
+
 
     const { username, password, email } = signupData
 

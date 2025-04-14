@@ -37,6 +37,7 @@ function AuthProviderWrapper(props) {
                     console.log("✅ Usuario autenticado", data)
                     setUser(data)
                     setIsLoading(false)
+                    window.location.href = "/products/list"
                 })
                 .catch(err => {
                     console.error("❌ Error verificando token", err)
