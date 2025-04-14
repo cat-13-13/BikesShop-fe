@@ -17,8 +17,6 @@ function AuthProviderWrapper(props) {
 
     const storeToken = token => {
         localStorage.setItem('authToken', token)
-        const navigate = useNavigate();
-        navigate('/');
     }
 
     const removeToken = () => {
@@ -41,7 +39,6 @@ function AuthProviderWrapper(props) {
                     console.log("✅ Usuario autenticado", data)
                     setUser(data)
                     setIsLoading(false)
-                    navigate('/')
                 })
                 .catch(err => {
                     console.error("❌ Error verificando token", err)
