@@ -13,7 +13,6 @@ const LandingPage = () => {
     const renderContent = () => {
         return (
             <>
-            <div className="landing-page">
                 <h1>Welcome to marKus_biKus</h1>
 
                 {view === 'login' && <LoginPage onBack={() => setView('landing')} />}
@@ -31,7 +30,6 @@ const LandingPage = () => {
                         )}
                     </div>
                 )}
-            </div>
             </>
         );
     };
