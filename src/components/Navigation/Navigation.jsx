@@ -40,22 +40,22 @@ const Navigation = () => {
                                             <Link to="/users/list" className='nav-title'>Users</Link>
                                         </Nav.Link>
                                     )}
+                                </Nav>
 
+                                <Nav className="ms-auto">
                                     <Nav.Link as="span">
                                         <Link to={`/users/${user._id}`} className='nav-title'>Profile</Link>
                                     </Nav.Link>
 
-                                    <Nav.Link as="span" className='  justify-content-right'>
+                                    <Nav.Link as="span">
                                         <Link to={`/cart`} className='nav-title'>
                                             <FaShoppingCart className="me-1" />
                                             ({user.cart?.length || 0})
                                         </Link>
                                     </Nav.Link>
 
-                                    <Nav.Link className='logout pointer justify-content-right' as="span" onClick={handleLogout}>Logout</Nav.Link>
+                                    <Nav.Link className='logout pointer' as="span" onClick={handleLogout}>Logout</Nav.Link>
                                 </Nav>
-
-
                             </>
                             :
                             <>

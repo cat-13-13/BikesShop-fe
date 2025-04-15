@@ -11,6 +11,7 @@ import UsersListPage from '../pages/UsersListPage/UsersListPage'
 import UserDetailPage from '../pages/UserDetailPage/UserDetailPage'
 import PurchasePage from '../pages/PurchasePage/PurchasePage'
 import CartPage from '../pages/CartPage/CartPage'
+import NotFoundPage from '../pages/NotFoundPage/NotFoundPage'
 
 import PrivateRoutes from './PrivateRoutes'
 import AdminRoutes from './AdminRoutes'
@@ -43,7 +44,7 @@ const AppRoutes = () => {
                 <Route path="/users/list" element={<UsersListPage />} />
             </Route>
 
-            <Route path="*" element={<h1>404</h1>} />
+            <Route path="*" element={<NotFoundPage />} />
         </Routes>
     )
 }
