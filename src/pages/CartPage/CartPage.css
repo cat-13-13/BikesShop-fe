@@ -40,13 +40,19 @@ h6 {
     font-weight: 300;
 }
 
-.cart-quantity-input {
-    width: 60px;
-    height: 30px;
-    text-align: center;
+.quantity-btn {
+    background-color: transparent;
+    border: 1px solid var(--color-primary);
+    color: var(--color-primary);
+    padding: 3px 10px;
     border-radius: 5px;
-    border: 1px solid var(--color-border);
-    margin-right: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+.quantity-btn:hover {
+    background-color: var(--color-primary-dark);
+    border: 1px solid var(--color-primary-dark);
+    color: white;
 }
 
 .buy-button {

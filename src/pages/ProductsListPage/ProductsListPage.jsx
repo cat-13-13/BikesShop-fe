@@ -55,13 +55,10 @@ const ProductsListPage = () => {
 
 
     return (
-        <Container>
+        <Container >
             <Row className="align-items-center mt-5">
                 <Col>
                     <h1 className="m-0">OUR PRODUCTS</h1>
-                    {
-                        user?.role === 'ADMIN' && <Button variant="dark" size="sm" onClick={() => setShowModal(true)}>Sell New Product</Button>
-                    }
                 </Col>
                 <Col>
                     <SearchBar setShowFilteredProduct={setShowFilteredProduct} />
@@ -69,7 +66,7 @@ const ProductsListPage = () => {
             </Row>
 
             <hr className="mb-4"/>
-            <Row>
+            <Row className="justify-content-space-between">
                 {
                     !products
                         ?
@@ -78,6 +75,11 @@ const ProductsListPage = () => {
                         <ProductsList productsList={productsList} />
                 }
             </Row>
+
+            {
+                user?.role === 'ADMIN' && 
+                <Button variant="dark" size="lg" className="save-btn mt-3" onClick={() => setShowModal(true)}>Sell New Product</Button>
+            }
 
             <Modal show={showModal} onHide={() => setShowModal(false)} size="lg">
                 <Modal.Header closeButton>

@@ -46,9 +46,3 @@
     font-weight: bold;
     color: var(--color-accent);
 }
-
-@media(max-width: 990px) {
-    .card {
-        margin: 20px;
-    }
-}

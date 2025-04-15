@@ -12,8 +12,8 @@
     
     /* Colores de fondo y texto */
     --color-background: #F3F4F6;      /* Fondo Claro */
-    --color-text: #1F2937;            /* Texto Principal */
-    --color-text-light: #4B5563;      /* Texto Secundario */
+    --color-text: #1C3D73;            /* Texto Principal */
+    --color-text-light: #475e7e;      /* Texto Secundario */
     
     /* Colores de acento */
     --color-accent: #F97316;          /* Naranja Acento */
@@ -38,7 +38,7 @@
 }
 
 body {
-    background-color: rgb(239, 235, 235);
+    background-color: #f5f7fc;
     padding-bottom: 5em;
 }
 

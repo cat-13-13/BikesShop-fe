@@ -80,11 +80,11 @@ const CartPage = () => {
             <Row>
                 <Col md={8} >
                     {cart.map((item, index) => (
-                        <div key={index} className="cart-item d-flex align-items-center mb-3">
+                        <div key={index} className="cart-item mb-3 text-center">
                             <img 
                                 src={getImageUrl(item.product, item.options)} 
                                 alt="Product Image" 
-                                className="cart-image"
+                                className="cart-image mb-3 mx-auto d-block"
                             />
 
                             <div className="cart-item-details">
@@ -95,23 +95,34 @@ const CartPage = () => {
 
                                 <ul>
                                     {Object.entries(item.options).map(([key, value], idx) => (
-                                        <li key={idx}>
+                                        <li key={idx} style={{ textAlign: "start" }}>
                                             <span className="bold">{key}</span>: {value}
                                         </li>
                                     ))}
                                 </ul>
 
-                                <h6 className="mb-2">Total: <span className="bold">{item.price * item.quantity} €</span></h6>
+                                <div className="d-flex justify-content-between align-items-center mb-2">
+                                    <div className="quantity-control d-flex align-items-center">
+                                        <Button 
+                                            variant="outline-secondary" 
+                                            className="quantity-btn" 
+                                            onClick={() => editCart(item._id, Math.max(0, item.quantity - 1))}
+                                        >
+                                            -
+                                        </Button>
+                                        <span className="quantity-value mx-3">{item.quantity}</span>
+                                        <Button 
+                                            variant="outline-secondary" 
+                                            className="quantity-btn" 
+                                            onClick={() => editCart(item._id, item.quantity + 1)}
+                                        >
+                                            +
+                                        </Button>
+                                    </div>
 
-                                {
-                                    <Form.Control
-                                        type="number"
-                                        className="cart-quantity-input"
-                                        min="0"
-                                        value={item.quantity}
-                                        onChange={(e) => editCart(item._id, e.target.value)}
-                                    />
-                                }
+                                    <h6 className="m-0">Total: <span className="bold">{item.price * item.quantity} €</span></h6>
+
+                                </div>
                             </div>
                         </div>
                     ))}

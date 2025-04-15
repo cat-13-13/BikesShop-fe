@@ -1,20 +1,5 @@
-.detailsCard {
-    background-color: white;
-    padding: 0% 5% 5% 5%;
-    color: black;
-    box-shadow: 2px 2px 2px 2px rgba(0.2, 0.2, 0.2, 0.2);
-}
-
-.productTitle {
-    padding-top: 3% !important;
-}
-
-            
-.product-image {
-    width: 100%;
-    max-width: 200px;
-    height: auto;
-    object-fit: cover;
+.container {
+    padding: 0;
 }
 
 .option-btn {
@@ -43,7 +28,7 @@
 }
 
 .modal-title {
-    font-family: 'Jura', sans-serif;
+    font-family: 'DM Sans', sans-serif;
     font-weight: 900;
     color: var(--color-primary-dark);
 }

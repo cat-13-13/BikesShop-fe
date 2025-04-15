@@ -13,7 +13,7 @@
 }
 
 .profile-title {
-    font-family: 'Jura', sans-serif;
+    font-family: '', sans-serif;
     color:  var(--color-primary-dark);
     text-align: center;
 }

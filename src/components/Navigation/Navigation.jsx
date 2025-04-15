@@ -20,8 +20,11 @@ const Navigation = () => {
     return (
         <Navbar className="shadow-sm p-3 mb-3 bg-white rounded navbarDetails" expand="lg" bg="white" variant="light">
             <Container>
+
                 <Navbar.Brand href="/" className='brand-name'>marKus_biKus</Navbar.Brand>
+
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
+
                 <Navbar.Collapse id="basic-navbar-nav">
                     {
                         user
@@ -31,34 +34,42 @@ const Navigation = () => {
                                     <Nav.Link as="span">
                                         <Link to="/" className='nav-title'>Shop</Link>
                                     </Nav.Link>
+
                                     {user?.role === 'ADMIN' && (
                                         <Nav.Link as="span">
                                             <Link to="/users/list" className='nav-title'>Users</Link>
                                         </Nav.Link>
                                     )}
+
+                                    <Nav.Link as="span">
+                                        <Link to={`/users/${user._id}`} className='nav-title'>Profile</Link>
+                                    </Nav.Link>
+
+                                    <Nav.Link as="span" className='  justify-content-right'>
+                                        <Link to={`/cart`} className='nav-title'>
+                                            <FaShoppingCart className="me-1" />
+                                            ({user.cart?.length || 0})
+                                        </Link>
+                                    </Nav.Link>
+
+                                    <Nav.Link className='logout pointer justify-content-right' as="span" onClick={handleLogout}>Logout</Nav.Link>
                                 </Nav>
-                                <Nav.Link as="span">
-                                    <Link to={`/users/${user._id}`} className='nav-title'>Profile</Link>
-                                </Nav.Link>
-                                <Nav.Link as="span" className='  justify-content-right mx-4'>
-                                    <Link to={`/cart`} className='nav-title'>
-                                        <FaShoppingCart className="me-1" />
-                                        ({user.cart?.length || 0})
-                                    </Link>
-                                </Nav.Link>
-                                <Nav.Link className='logout pointer justify-content-right mx-2' as="span" onClick={handleLogout}>Logout</Nav.Link>
+
+
                             </>
                             :
                             <>
                                 <Nav.Link as="span">
                                     <Link to="/register" className='nav-title'>Sign Up</Link>
                                 </Nav.Link>
+
                                 <Nav.Link as="span">
-                                    <Link to="/login" className='nav-title mx-2 '>Login</Link>
+                                    <Link to="/login" className='nav-title'>Login</Link>
                                 </Nav.Link>
                             </>
                     }
                 </Navbar.Collapse>
+
             </Container>
         </Navbar >
     );
