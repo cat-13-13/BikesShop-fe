@@ -1,0 +1,38 @@
+.landing-page {
+    background-image: url('/public/landing_bg.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: white;
+    padding: 0;
+}
+
+.landing-page h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    margin-top: 5rem;
+}
+
+.landing-content {
+    padding: 40px 0;
+}
+
+.landing-content p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    color: var(--color-accent);
+}
+
+@media (max-width: 768px) {
+    .landing-content h1 {
+        font-size: 2rem;
+    }
+
+    .landing-content p {
+        font-size: 1.2rem;
+    }
+}

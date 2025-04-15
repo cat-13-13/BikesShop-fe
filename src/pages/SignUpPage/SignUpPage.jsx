@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom"
 import { UserContext } from '../../contexts/user.context'
 import FormError from './../../components/FormError/FormError'
 
-const SignupPage = () => {
+const SignupPage = ({ onBack }) => {
 
     const [signupData, setSignupData] = useState({
         username: '',
@@ -57,34 +57,34 @@ const SignupPage = () => {
             <Row>
                 <Col md={{ offset: 3, span: 6 }}>
 
-                    <h1>Sign Up</h1>
+                    <h3 className="accent-color">Sign Up</h3>
                     <hr />
 
                      <Form onSubmit={handleSubmit}>
 
                         <Form.Group className="mb-3" controlId="username">
-                            <Form.Label>USERNAME</Form.Label>
+                            <Form.Label className="accent-color">USERNAME</Form.Label>
                             <Form.Control type="text" value={username} onChange={handleInputChange} name="username" />
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="email">
-                            <Form.Label>@EMAIL</Form.Label>
+                            <Form.Label className="accent-color">@EMAIL</Form.Label>
                             <Form.Control type="email" value={email} onChange={handleInputChange} name="email" />
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="password">
-                            <Form.Label>PASSWORD</Form.Label>
+                            <Form.Label className="accent-color">PASSWORD</Form.Label>
                             <Form.Control type="password" value={password} onChange={handleInputChange} name="password" />
                         </Form.Group>
 
                         {errorMessage && <FormError>{errorMessage}</FormError>} {/* Display FormError if there's an error */}
 
                         <div className="d-grid">
-                            <Button variant="dark" type="submit">REGISTER</Button>
+                            <Button className="shop-now-btn" variant="dark" type="submit">REGISTER</Button>
                         </div>
 
                     </Form>
-
+                    <Button className="back-btn" variant="link" onClick={onBack}>Back</Button>
                 </Col>
             </Row>
         </Container>

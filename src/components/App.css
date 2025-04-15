@@ -39,7 +39,6 @@
 
 body {
     background-color: #f5f7fc;
-    padding-bottom: 5em;
 }
 
 h1,
@@ -91,6 +90,21 @@ h5 {
     background-color: var(--color-primary-light);
 }
 
+.shop-now-btn {
+    background-color: var(--color-primary);
+    color: white;
+    border: none;
+    padding: 3px 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.shop-now-btn:hover {
+    background-color: var(--color-primary-light);
+}
+
 .add-price-btn {
     background-color: transparent;
     border: 1px solid var(--color-accent);
@@ -119,4 +133,15 @@ h5 {
     font-weight: 600;
     pointer-events: all;
     cursor: not-allowed !important; 
+}
+
+.back-btn {
+    color: var(--color-accent);
+    text-decoration: none;
+}
+
+
+/* Colors */
+.accent-color {
+    color: var(--color-accent);
 }

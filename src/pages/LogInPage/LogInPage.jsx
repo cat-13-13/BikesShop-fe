@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { AuthContext } from "./../../contexts/auth.context"
 import FormError from './../../components/FormError/FormError'
 
-const LoginPage = () => {
+const LoginPage = ({ onBack }) => {
     const [loginData, setLoginData] = useState({
         email: '',
         password: ''
@@ -48,29 +48,29 @@ const LoginPage = () => {
             <Row>
                 <Col md={{ offset: 3, span: 6 }}>
 
-                    <h1>Log In</h1>
+                    <h3 className="accent-color">Log In</h3>
                     <hr />
 
                     <Form onSubmit={handleSubmit}>
 
                         <Form.Group className="mb-3" controlId="email">
-                            <Form.Label>@EMAIL</Form.Label>
+                            <Form.Label className='accent-color'>@EMAIL</Form.Label>
                             <Form.Control type="email" value={email} onChange={handleInputChange} name="email" />
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="password">
-                            <Form.Label>PASSWORD</Form.Label>
+                            <Form.Label className='accent-color'>PASSWORD</Form.Label>
                             <Form.Control type="password" value={password} onChange={handleInputChange} name="password" />
                         </Form.Group>
 
                         {errorMessage && <FormError>{errorMessage}</FormError>}
 
                         <div className="d-grid">
-                            <Button variant="dark" type="submit">GO!</Button>
+                            <Button className='shop-now-btn' variant="dark" type="submit">GO!</Button>
                         </div>
 
                     </Form>
-
+                    <Button className='back-btn' variant="link" onClick={onBack}>Back</Button>
                 </Col>
             </Row>
         </Container>

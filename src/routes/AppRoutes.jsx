@@ -12,6 +12,7 @@ import UserDetailPage from '../pages/UserDetailPage/UserDetailPage'
 import PurchasePage from '../pages/PurchasePage/PurchasePage'
 import CartPage from '../pages/CartPage/CartPage'
 import NotFoundPage from '../pages/NotFoundPage/NotFoundPage'
+import LandingPage from '../pages/LandingPage/LandingPage'
 
 import PrivateRoutes from './PrivateRoutes'
 import AdminRoutes from './AdminRoutes'
@@ -28,11 +29,10 @@ const AppRoutes = () => {
     return (
 
         <Routes>
-            <Route path="/" element={<ProductsListPage />} />
-            <Route path="/register" element={<SignUpPage />} />
-            <Route path="/login" element={<LogInPage />} />
+            <Route path="/landing" element={<LandingPage />} />
 
             <Route element={<PrivateRoutes />}>
+                <Route path="/" element={<ProductsListPage />} />
                 <Route path="/users/:_id" element={<UserDetailPage />} />
                 <Route path="/products/:_id" element={<ProductDetailPage />} />
                 <Route path="/products/:product_id/purchase" element={<PurchasePage />} />
