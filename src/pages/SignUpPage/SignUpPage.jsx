@@ -53,7 +53,7 @@ const SignupPage = ({ onBack }) => {
     const { username, password, email } = signupData
 
     return (
-        <Container>
+        <Container className="shadow-bg">
             <Row>
                 <Col md={{ offset: 3, span: 6 }}>
 

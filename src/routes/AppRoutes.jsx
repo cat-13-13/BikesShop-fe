@@ -3,8 +3,6 @@ import { AuthContext } from '../contexts/auth.context'
 import { Routes, Route } from 'react-router-dom'
 
 import Loader from '../components/Loader/Loader' 
-import SignUpPage from "./../pages/SignUpPage/SignUpPage"
-import LogInPage from "../pages/LogInPage/LogInPage"
 import ProductsListPage from "../pages/ProductsListPage/ProductsListPage"
 import ProductDetailPage from '../pages/ProductDetailPage/ProductDetailPage'
 import UsersListPage from '../pages/UsersListPage/UsersListPage'
