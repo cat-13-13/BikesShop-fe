@@ -66,7 +66,7 @@ const ProductsListPage = () => {
             </Row>
 
             <hr className="mb-4"/>
-            <Row className="justify-content-space-between">
+            <Row className="justify-content-center">
                 {
                     !products
                         ?
