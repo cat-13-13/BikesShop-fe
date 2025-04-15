@@ -60,11 +60,11 @@ const Navigation = () => {
                             :
                             <>
                                 <Nav.Link as="span">
-                                    <Link to="/register" className='nav-title'>Sign Up</Link>
+                                    <Link to="/landing" className='nav-title'>Sign Up</Link>
                                 </Nav.Link>
 
                                 <Nav.Link as="span">
-                                    <Link to="/login" className='nav-title'>Login</Link>
+                                    <Link to="/landing" className='nav-title'>Login</Link>
                                 </Nav.Link>
                             </>
                     }
