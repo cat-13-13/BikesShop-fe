@@ -67,8 +67,23 @@ const ProductDetailsPage = () => {
     const handleDelete = () => {
         productService
             .deleteProduct(_id)
-            .then(() => navigate('/'))
+            .then(() => {
+                console.log("Product deleted successfully!");
+                navigate('/');
+            })
             .catch(err => console.log(err))
+            .finally(() => {
+                const cartItem = user.cart.find(item => item.product.toString() === _id);
+                
+                if (cartItem) {
+                    userService
+                        .removeFromCart(user._id, cartItem._id)
+                        .then(() => console.log("Product removed from cart successfully!"))
+                        .catch(err => console.log("Error removing product from cart:", err));
+                } else {
+                    console.log("Product not found in cart, nothing to remove.");
+                }
+            });
     }
 
 
