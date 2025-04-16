@@ -162,6 +162,7 @@ const ProductDetailsPage = () => {
             const color = (selectedOptions["Color"] || "default").toLowerCase().replace(/\s+/g, '-');
             return `/surf-boards/surfboard-${color}.svg`;
         }
+        else return "/favicon.svg";
     };
 
     const isAddToCartDisabled = product?.isCustomizable && product.customizableParts.some(part => !selectedOptions[part.part]);

@@ -30,7 +30,7 @@ const CartPage = () => {
 
     const editCart = async (cartItemId, quantity) => {
         try {
-            if (quantity === "0") {
+            if (quantity === 0) {
                 await userService.removeFromCart(user._id, cartItemId);
                 setCart((prevCart) => prevCart.filter((item) => item._id !== cartItemId));
             } else {
@@ -63,6 +63,7 @@ const CartPage = () => {
             const color = formatOption(options["Color"] || "default");
             return `/surf-boards/surfboard-${color}.svg`;
         }
+        else return "/favicon.svg";
     };
 
     const calculateTotalPrice = () => {

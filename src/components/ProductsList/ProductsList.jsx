@@ -22,6 +22,7 @@ const ProductsList = ({ productsList }) => {
         } else if (product.title === "Surf Board") {
             return "/surf-boards/surfboard-blue.svg";
         }
+        else return "/favicon.svg";
     };
 
     return (
