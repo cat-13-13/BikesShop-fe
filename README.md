@@ -16,7 +16,6 @@ marKus-biKus es una plataforma de ecommerce diseñada para que Marcus, dueño de
 ## 🧰 Stack Tecnológico
 
 - **Frontend**: React.js, Bootstrap, React Router, Axios
-- **Testing**: React Testing Library
 - **Backend**: Node.js, Express, MongoDB (ver repositorio correspondiente)
 
 ---
