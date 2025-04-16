@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom"
 import productService from "../../services/product.service"
 import userService from "../../services/user.service"
 
-import { Row, Col, Container, Button, Modal } from "react-bootstrap"
+import { Row, Col, Container, Button, Modal, OverlayTrigger, Tooltip } from "react-bootstrap"
 import { AuthContext } from '../../contexts/auth.context'
 import EditProductForm from '../EditProductPage/EditProductPage'
 import Loader from "../../components/Loader/Loader"
@@ -227,22 +227,37 @@ const ProductDetailsPage = () => {
                                                                 return selected && selected === value;
                                                             });
 
+                                                            const tooltipText = isDisabled
+                                                                ? "This option is unavailable due to a conflicting selection."
+                                                                : !option.inStock
+                                                                ? "This option is out of stock."
+                                                                : "";
+
                                                             return (
-                                                                <Button
-                                                                    key={optIdx}
-                                                                    className={`mx-1 my-1 option-btn ${selectedOptions[part.part] === option.name ? "selected" : ""} ${isDisabled || !option.inStock ? "disabled" : ""}`}
-                                                                    onClick={() => handleOptionChange(part.part, option)}
-                                                                    disabled={isDisabled || !option.inStock}
-                                                                    title={
-                                                                        isDisabled
-                                                                            ? "This option is unavailable due to a conflicting selection."
-                                                                            : !option.inStock
-                                                                            ? "This option is out of stock."
-                                                                            : ""
-                                                                    }
-                                                                >
-                                                                    {option.name}
-                                                                </Button>
+                                                                tooltipText ? (
+                                                                    <OverlayTrigger
+                                                                        key={optIdx}
+                                                                        placement="top"
+                                                                        overlay={<Tooltip>{tooltipText}</Tooltip>}
+                                                                    >
+                                                                        <Button
+                                                                            className={`mx-1 my-1 option-btn ${selectedOptions[part.part] === option.name ? "selected" : ""} ${isDisabled || !option.inStock ? "disabled" : ""}`}
+                                                                            onClick={() => handleOptionChange(part.part, option)}
+                                                                            disabled={isDisabled || !option.inStock}
+                                                                        >
+                                                                            {option.name}
+                                                                        </Button>
+                                                                    </OverlayTrigger>
+                                                                ) : (
+                                                                    <Button
+                                                                        key={optIdx}
+                                                                        className={`mx-1 my-1 option-btn ${selectedOptions[part.part] === option.name ? "selected" : ""} ${isDisabled || !option.inStock ? "disabled" : ""}`}
+                                                                        onClick={() => handleOptionChange(part.part, option)}
+                                                                        disabled={isDisabled || !option.inStock}
+                                                                    >
+                                                                        {option.name}
+                                                                    </Button>
+                                                                )
                                                             );
                                                         })
                                                     }
