@@ -71,7 +71,7 @@ const UserDetailsPage = () => {
                                     ?
                                     profileUser.purchasedProduct.map(product => {
                                         return (
-                                            <Col className="my-3" md={{ span: 4 }} key={product._id}>
+                                            <Col className="my-3" md={{ span: 6 }} key={product._id}>
                                                 <Card className="product-card">
                                                     <Card.Img variant="top" src={product.image} />
                                                     <Card.Body >
@@ -98,7 +98,7 @@ const UserDetailsPage = () => {
 
                                                         {
                                                             product.product
-                                                                ? <Link to={`/products/${product.product._id}`} className="btn btn-primary">View Product</Link>
+                                                                ? <Link to={`/products/${product.product._id}`} className="shop-now-btn">View Product</Link>
                                                                 : <span>Product no longer available</span>
                                                         }
                                                     </Card.Body>

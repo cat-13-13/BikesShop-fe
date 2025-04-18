@@ -1,6 +1,5 @@
 .user-details-container {
-    background-color: #f9f9f9;
-    padding: 20px;
+    padding: 0 20px;
     border-radius: 10px;
     position: relative;
 }
@@ -71,4 +70,13 @@
 .product-card-title {
     font-size: 25px;
     color: var(--color-primary);
+}
+
+.shop-now-btn {
+    text-decoration: none;
+    color: white;
+}
+.shop-now-btn:hover {
+    text-decoration: none;
+    color: white;
 }
