@@ -8,7 +8,7 @@ import { AuthContext } from '../../contexts/auth.context'
 import EditProductForm from '../EditProductPage/EditProductPage'
 import Loader from "../../components/Loader/Loader"
 import './ProductDetailPage.css';
-
+import DeleteConfirmationModal from "../../components/DeleteConfirmationModal/DeleteConfirmationModal";
 
 const ProductDetailsPage = () => {
 
@@ -16,6 +16,7 @@ const ProductDetailsPage = () => {
     const { user } = useContext(AuthContext)
 
     const [showModal, setShowModal] = useState(false)
+    const [showDeleteModal, setShowDeleteModal] = useState(false)
 
     const [product, setProduct] = useState()
 
@@ -86,6 +87,10 @@ const ProductDetailsPage = () => {
             });
     }
 
+    const handleDeleteConfirm = () => {
+        setShowDeleteModal(false);
+        handleDelete();
+    };
 
     const handleOptionChange = (part, option) => {
         setSelectedOptions(prevState => {
@@ -108,7 +113,7 @@ const ProductDetailsPage = () => {
             : {};
 
         userService
-            .addToCart(user._id, _id, optionsToSave, calculateTotalPrice())
+            .addToCart(user._id, _id, optionsToSave, calculateTotalPrice(), product.title)
             .then(() => {
                 console.log("Product added to cart successfully!");
                 navigate('/cart');
@@ -205,7 +210,7 @@ const ProductDetailsPage = () => {
                                         user?.role === 'ADMIN' &&
                                         <>
                                             <Button size="sm" className="edit-btn mb-2" onClick={() => setShowModal(true)}>EDIT</Button>
-                                            <Button className="delete-btn" size="sm" onClick={() => handleDelete()}>DELETE</Button>
+                                            <Button className="delete-btn" size="sm" onClick={() => setShowDeleteModal(true)}>DELETE</Button>
                                         </>
                                     }
                                 </Row>
@@ -285,6 +290,12 @@ const ProductDetailsPage = () => {
                                 <EditProductForm closeModal={() => setShowModal(false)} updateList={loadProduct} />
                             </Modal.Body>
                         </Modal>
+
+                        <DeleteConfirmationModal
+                            show={showDeleteModal}
+                            onHide={() => setShowDeleteModal(false)}
+                            onConfirm={handleDeleteConfirm}
+                        />
                     </>
                 }
             </div>

@@ -28,8 +28,8 @@ class UserService {
     }
 
 
-    addToCart(user_id, product_id, options, price) {
-        return this.api.post(`/cart/${user_id}/${product_id}`, {options: options, price: price})
+    addToCart(user_id, product_id, options, price, title) {
+        return this.api.post(`/cart/${user_id}/${product_id}`, {options: options, price: price, title: title})
     }
 
 

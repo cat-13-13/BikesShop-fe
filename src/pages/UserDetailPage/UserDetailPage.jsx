@@ -5,6 +5,7 @@ import { Row, Col, Container, Button, Modal, Card } from "react-bootstrap"
 import EditUserForm from "../../components/EditUserForm/EditUserForm"
 import Loader from "../../components/Loader/Loader"
 import { AuthContext } from "../../contexts/auth.context"
+import DeleteConfirmationModal from "../../components/DeleteConfirmationModal/DeleteConfirmationModal";
 import './UserDetailPage.css';
 
 const UserDetailsPage = () => {
@@ -15,6 +16,7 @@ const UserDetailsPage = () => {
 
     const [profileUser, setProfileUser] = useState()
     const [showModalEdit, setshowModalEdit] = useState(false)
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
 
     const navigate = useNavigate()
 
@@ -40,6 +42,11 @@ const UserDetailsPage = () => {
             })
             .catch(err => console.log(err))
     }
+
+    const handleDeleteConfirm = () => {
+        setShowDeleteModal(false);
+        handleDelete();
+    };
 
     return (
         <Container className="user-details-container">
@@ -68,9 +75,8 @@ const UserDetailsPage = () => {
                                                 <Card className="product-card">
                                                     <Card.Img variant="top" src={product.image} />
                                                     <Card.Body >
-                                                        <Card.Title className="product-card-title">{product.product.title}</Card.Title>
+                                                        <Card.Title className="product-card-title">{product.title}</Card.Title>
                                                         
-                                                       
                                                         {Object.keys(product.options).length > 0 && (
                                                             <>
                                                                 Options:
@@ -81,14 +87,20 @@ const UserDetailsPage = () => {
                                                                 </ul>
                                                             </>
                                                         )}
-                                                      
                                                         
                                                         <Card.Text className="product-card-text d-flex justify-content-between">
                                                             <span>
                                                                 <strong className="bold">Date:</strong> {new Date(product.purchaseDate).toISOString().split('T')[0]}
                                                             </span>
                                                             <span><strong className="bold">Price:</strong> {product.price} €</span>
+
                                                         </Card.Text>
+
+                                                        {
+                                                            product.product
+                                                                ? <Link to={`/products/${product.product._id}`} className="btn btn-primary">View Product</Link>
+                                                                : <span>Product no longer available</span>
+                                                        }
                                                     </Card.Body>
                                                 </Card>
                                             </Col>
@@ -104,7 +116,7 @@ const UserDetailsPage = () => {
                             &&
                             <div className="fixed-action-container">
                                 <Button className="mx-2 edit-btn" size="sm" onClick={() => setshowModalEdit(true)}>EDIT</Button>
-                                <Button className="delete-btn" size="sm" onClick={() => handleDelete()}>DELETE</Button>
+                                <Button className="delete-btn" size="sm" onClick={() => setShowDeleteModal(true)}>DELETE</Button>
                             </div>
                         }
 
@@ -116,6 +128,12 @@ const UserDetailsPage = () => {
                                 <EditUserForm closeModal={() => setshowModalEdit(false)} updateList={loadUser} />
                             </Modal.Body>
                         </Modal>
+
+                        <DeleteConfirmationModal
+                            show={showDeleteModal}
+                            onHide={() => setShowDeleteModal(false)}
+                            onConfirm={handleDeleteConfirm}
+                        />
                     </>
             }
 
